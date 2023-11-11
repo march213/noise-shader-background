@@ -65,6 +65,11 @@ float fbm(vec2 x) {
 void main(void)
 {
     vec2 uv = v_texcoord;
+
+    // find the distance between the mouse and point
+    vec2 mouse = u_mouse / u_resolution;
+    float dist = distance(uv, mouse);
+    float strength = smoothstep(0.5, 0.0, dist);
     
     // where does the hue start
     float hue = u_time * 0.02;
@@ -82,7 +87,8 @@ void main(void)
     vec4 color2 = vec4(rgb2, 1.0);
     
     // add some grain
-    float grain = mix(-0.01, 0.01, rand(uv));
+    // float grain = mix(-0.1 * strength, 0.1 * strength, rand(uv));
+    float grain = rand(100.0 * uv) * mix(0.2, 0.01, strength);
     
     // make movement for fbm
     vec2 movement = vec2(u_time * 0.01, u_time * -0.01);
@@ -96,7 +102,8 @@ void main(void)
     f= fract(f);
     
     // mix colors based on noise pattern
-    float mixer = smoothstep(0.0, 0.1, f) - smoothstep(0.1, 0.2, f);
+    float gap = mix(0.5, 0.01, strength);
+    float mixer = smoothstep(0.0, gap, f) - smoothstep(1.0 - gap, 1.0, f);
     
     // final pixel color is...
     vec4 color = mix(color1, color2, mixer);
