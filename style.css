@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'Sprat';
+  src: url(sprat.woff2);
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  font-family: Sprat;
+  font-size: 40px;
+  line-height: 1.25;
+  font-variation-settings: 'wght' 100, 'wdth' 10;
+
+  background-color: #222222;
+  color: #ffffff;
+
+  display: flex;
+}
+
+main {
+  flex: 1;
+  border: 1px solid white;
+  margin: 48px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  flex: 1;
+  padding: 32px;
+}
+
+footer {
+  padding: 32px;
+  border-top: 1px solid white;
+
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  transition: font-variation-settings 0.5s;
+}
+
+a:hover {
+  font-variation-settings: 'wght' 140, 'wdth' 10;
+}
+
+a:before {
+  content: '';
+  display: inline-block;
+  background-color: white;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  margin: 0 0.4em 0 0;
+  border: 2px solid white;
+  transition: background-color 0.2s;
+}
+
+a:hover:before {
+  background-color: transparent;
+}
+
+canvas {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vmax;
+  height: 100vmax;
+  pointer-events: none;
+  z-index: -1;
+}
