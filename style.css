@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Sprat';
-  src: url(sprat.woff2);
+  src: url('./sprat.woff2');
 }
 
 html,
