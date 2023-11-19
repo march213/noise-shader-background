@@ -24,3 +24,4 @@ sizer();
 window.addEventListener('resize', sizer);
 
 sandbox.load(fragString);
+sandbox.setUniform('u_seed', Math.random());

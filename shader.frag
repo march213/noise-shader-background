@@ -7,6 +7,7 @@ precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
+uniform float u_seed;
 
 varying vec2 v_texcoord;
 
@@ -72,7 +73,7 @@ void main(void)
     float strength = smoothstep(0.5, 0.0, dist);
     
     // where does the hue start
-    float hue = u_time * 0.02;
+    float hue = u_time * 0.02 + u_seed;
     
     // make two hsv colors
     vec3 hsv1 = vec3(hue, 0.9, 0.85);
@@ -95,7 +96,7 @@ void main(void)
     movement *= rotation2d(u_time * 0.005);
     
     // make a noise pattern
-    float f = fbm(uv + movement);
+    float f = fbm(uv + movement + u_seed);
     f *= 10.0;
     f += grain;
     f += u_time * 0.2;
